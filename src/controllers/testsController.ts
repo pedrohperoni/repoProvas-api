@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
+import * as testsService from "../services/testsService.js"
 
 export async function getTestsByDisciplines(req: Request, res:Response){
-   console.log("TESTS CONTROLLER")
-   console.log(res.locals.userId)
-   res.sendStatus(201)
+   const tests = await testsService.getByDisciplines()
+   res.send(tests).status(201)
 }
