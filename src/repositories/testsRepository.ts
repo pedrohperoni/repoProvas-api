@@ -1,6 +1,6 @@
 import { prisma } from "../database.js";
 
-export async function getAllDisciplines() {
+ export async function getAllByDisciplines() {
    const tests = await prisma.terms.findMany({
       select:{
          number: true,
@@ -9,37 +9,65 @@ export async function getAllDisciplines() {
                name: true,
                teachersDisciplines:{
                   select:{
+                     teachers:{
+                        select:{
+                           name: true,
+                        }
+                     },
                      tests:{
                         select:{
                            name: true,
                            categories:{
                               select:{
                                  name: true
-                                     }
-                           },
-                           teachersDisciplines:{
-                              select:{
-                                 teachers:{
-                                    select:{
-                                       name: true
-                                    }
-                                 }
                               }
                            }
                         }
-                     },
+                     }
                   }
                }
             }
-         },
-      },
+         }
+      }
    })
    return tests;
  }
 
-// ??? -> relacionar as tabelas sem pegar as vazias
 
-// export async function getAllDisciplines() {
+ export async function getAllByTeachers(){
+    const tests = await prisma.teachers.findMany({
+      select:{
+         name: true,
+         teachersDisciplines:{
+            select:{
+               tests:{
+                  select:{
+                     name: true,
+                     categories:{
+                        select:{
+                           name: true
+                        }
+                     }
+                  }
+               },
+               disciplines:{
+                  select:{
+                     name: true
+                  }
+               }
+            }
+         }
+      }
+    })
+    return tests
+ }
+
+
+
+
+
+
+//  export async function getAllByDisciplines() {
 //    const tests = await prisma.terms.findMany({
 //       select:{
 //          number: true,
@@ -50,33 +78,28 @@ export async function getAllDisciplines() {
 //                   select:{
 //                      tests:{
 //                         select:{
+//                            name: true,
 //                            categories:{
 //                               select:{
-//                                  name: true,
-//                                  tests:{
+//                                  name: true
+//                                      }
+//                            },
+//                            teachersDisciplines:{
+//                               select:{
+//                                  teachers:{
 //                                     select:{
-//                                        name: true,
-//                                        teachersDisciplines:{
-//                                           select:{
-//                                              teachers:{
-//                                                 select:{
-//                                                    name: true
-//                                                 }
-//                                              }
-//                                           }
-//                                        }
+//                                        name: true
 //                                     }
 //                                  }
 //                               }
-                              
-//                            }                           
+//                            }
 //                         }
-//                      },
+//                      }
 //                   }
 //                }
 //             }
-//          },
-//       },
+//          }
+//       }
 //    })
 //    return tests;
 //  }

@@ -5,5 +5,5 @@ import tokenValidationMiddleware from "../middlewares/tokenValidationMiddleware.
 const testsRouter = Router();
 
 testsRouter.get("/tests/disciplines", tokenValidationMiddleware, testsController.getTestsByDisciplines);
-
+testsRouter.get("/tests/teachers", tokenValidationMiddleware, testsController.getTestsByTeacher)
 export default testsRouter;
