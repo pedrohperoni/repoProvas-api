@@ -7,6 +7,18 @@ export async function getByDisciplines(){
 }
 
 export async function getByTeachers(){
-   const tests = await testsRepository.getAllByTeachers()
-   return tests
+   const teachers = await testsRepository.getAllTeachers()
+   
+   let categoriesArray = []
+
+   for(let i=0;i<teachers.length;i++){
+      const categories = await testsRepository.getCategoryByTeacherId(teachers[i].id)
+      const updatedCategories = {
+         id: teachers[i].id,
+         teacher: teachers[i].name,
+         categories
+      }
+      categoriesArray = [...categoriesArray, updatedCategories]
+   }
+   return categoriesArray
 }

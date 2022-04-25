@@ -33,73 +33,42 @@ import { prisma } from "../database.js";
    return tests;
  }
 
+ export async function getAllTeachers(){
+    const teachers = await prisma.teachers.findMany({
+       select:{
+          name: true,
+          id: true
+       }
+    })
+    return teachers
+}
 
- export async function getAllByTeachers(){
-    const tests = await prisma.teachers.findMany({
+export async function getCategoryByTeacherId(teacherId: number){
+   const categories = await prisma.categories.findMany({
       select:{
+         id: true,
          name: true,
-         teachersDisciplines:{
+         tests:{
+            where:{
+               teachersDisciplines:{
+                  teacherId
+               }
+            },
             select:{
-               tests:{
+               id: true,
+               name: true,
+               teachersDisciplines:{
                   select:{
-                     name: true,
-                     categories:{
+                     disciplines:{
                         select:{
-                           name: true
+                           name:true
                         }
                      }
-                  }
-               },
-               disciplines:{
-                  select:{
-                     name: true
                   }
                }
             }
          }
       }
-    })
-    return tests
- }
-
-
-
-
-
-
-//  export async function getAllByDisciplines() {
-//    const tests = await prisma.terms.findMany({
-//       select:{
-//          number: true,
-//          disciplines:{
-//             select:{
-//                name: true,
-//                teachersDisciplines:{
-//                   select:{
-//                      tests:{
-//                         select:{
-//                            name: true,
-//                            categories:{
-//                               select:{
-//                                  name: true
-//                                      }
-//                            },
-//                            teachersDisciplines:{
-//                               select:{
-//                                  teachers:{
-//                                     select:{
-//                                        name: true
-//                                     }
-//                                  }
-//                               }
-//                            }
-//                         }
-//                      }
-//                   }
-//                }
-//             }
-//          }
-//       }
-//    })
-//    return tests;
-//  }
+   })
+   return categories
+}
