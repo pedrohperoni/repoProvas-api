@@ -19,6 +19,7 @@ import { prisma } from "../database.js";
                            id: true,
                            name: true,
                            pdfUrl: true,
+                           views: true,
                            categories:{
                               select:{
                                  name: true
