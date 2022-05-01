@@ -3,7 +3,6 @@ import * as sessionsRepository from "../repositories/sessionsRepository.js";
 import jwt from "jsonwebtoken";
 
 import dotenv from "dotenv";
-import { getTestsByDisciplines } from "../controllers/testsController.js";
 dotenv.config();
 
 export default async function tokenValidationMiddleware(req: Request, res: Response, next: NextFunction) {

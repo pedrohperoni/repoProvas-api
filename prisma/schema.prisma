@@ -57,6 +57,7 @@ model tests {
   teachersDisciplinesId Int
   categories            categories          @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   teachersDisciplines   teachersDisciplines @relation(fields: [teachersDisciplinesId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  views                 Int                 @default(0)
 }
 
 model sessions {

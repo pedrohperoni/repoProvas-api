@@ -16,7 +16,9 @@ import { prisma } from "../database.js";
                      },
                      tests:{
                         select:{
+                           id: true,
                            name: true,
+                           pdfUrl: true,
                            categories:{
                               select:{
                                  name: true
@@ -57,6 +59,8 @@ export async function getCategoryByTeacherId(teacherId: number){
             select:{
                id: true,
                name: true,
+               views: true,
+               pdfUrl: true,
                teachersDisciplines:{
                   select:{
                      disciplines:{
@@ -71,4 +75,26 @@ export async function getCategoryByTeacherId(teacherId: number){
       }
    })
    return categories
+}
+
+export async function getTestById(id: number){
+   const test = await prisma.tests.findFirst({
+      where: { 
+         id: id
+      }
+   })
+   return test
+}
+
+export async function addViewByTestId(id: number){
+   await prisma.tests.update({
+      where: {
+         id:id
+      },
+      data:{
+         views:{
+            increment: 1
+         }
+      }
+   })
 }

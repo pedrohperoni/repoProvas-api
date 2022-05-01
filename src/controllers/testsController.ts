@@ -10,3 +10,9 @@ export async function getTestsByTeacher(req: Request, res:Response){
    const tests = await testsService.getByTeachers()
    res.send(tests)
 }
+
+export async function addViewByTestId(req: Request, res:Response){
+   const {testId} = req.params
+   await testsService.addViewByTestId(parseInt(testId))
+   res.sendStatus(201)
+}

@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
 	"build": "tsc",
-	"start": "node dist/app.js"
+   "start": "npx nodemon src/app.ts"
 },
   "dependencies": {
     "@prisma/client": "^3.12.0",

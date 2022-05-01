@@ -16,6 +16,13 @@ export async function getByTeachers() {
    return testsArray;
 }
 
+export async function addViewByTestId(id: number){
+   const test = await testsRepository.getTestById(id)
+   if(!test) throw { type: "not_found", message: "Test not found" };
+
+   await testsRepository.addViewByTestId(id)
+}
+
 async function sortTeachersArray(teachers: teachers) {
    let teachersArray = [];
    for (let i = 0; i < teachers.length; i++) {
@@ -44,6 +51,8 @@ async function sortTeachersArray(teachers: teachers) {
                teacher: teachersArray[i].teacher,
                category: teachersArray[i].categories[j].name,
                test: teachersArray[i].categories[j].tests[k].name,
+               views: teachersArray[i].categories[j].tests[k].views,
+               pdfUrl: teachersArray[i].categories[j].tests[k].pdfUrl,
                discipline: teachersArray[i].categories[j].tests[k].teachersDisciplines.disciplines.name
             }
             teacherTests.push(test)
