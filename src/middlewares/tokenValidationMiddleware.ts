@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export default async function tokenValidationMiddleware(req: Request, res: Response, next: NextFunction) {
-
   const authorization = req.headers.authorization;
   const token = authorization?.replace("Bearer ", "");
   if (!token) throw { type: "bad_request", message: "Token not defined" };

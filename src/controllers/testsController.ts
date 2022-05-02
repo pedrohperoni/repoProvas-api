@@ -16,3 +16,9 @@ export async function addViewByTestId(req: Request, res:Response){
    await testsService.addViewByTestId(parseInt(testId))
    res.sendStatus(201)
 }
+
+export async function createTest(req: Request, res:Response){
+   const test = req.body
+   await testsService.createTest(test)
+   res.sendStatus(201)
+}
