@@ -39,16 +39,6 @@ export async function getAllByDisciplines() {
   return tests;
 }
 
-export async function getAllTeachers() {
-  const teachers = await prisma.teachers.findMany({
-    select: {
-      name: true,
-      id: true,
-    },
-  });
-  return teachers;
-}
-
 export async function getCategoryByTeacherId(teacherId: number) {
   const categories = await prisma.categories.findMany({
     select: {

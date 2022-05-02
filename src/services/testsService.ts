@@ -16,7 +16,7 @@ export async function getByDisciplines() {
 }
 
 export async function getByTeachers() {
-  const teachers = await testsRepository.getAllTeachers();
+  const teachers = await teachersRepository.getAllTeachers();
   const testsArray = sortTeachersArray(teachers);
   return testsArray;
 }

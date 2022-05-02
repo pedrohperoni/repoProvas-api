@@ -23,3 +23,13 @@ export async function getTeacherById(teacherId: number) {
    })
    return teacher
 }
+
+export async function getAllTeachers() {
+   const teachers = await prisma.teachers.findMany({
+     select: {
+       name: true,
+       id: true,
+     },
+   });
+   return teachers;
+ }
