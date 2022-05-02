@@ -9,3 +9,12 @@ export async function getDisciplines(){
    })
    return disciplines
 }
+
+export async function getDisciplineById(teacherId: number){
+   const discipline = await prisma.disciplines.findUnique({
+      where:{ 
+         id:teacherId
+      }
+   })
+   return discipline
+}

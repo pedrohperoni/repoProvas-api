@@ -9,3 +9,12 @@ export async function getCategories() {
   });
   return categories;
 }
+
+export async function getCategoryById(categoryId: number){
+   const category = await prisma.categories.findUnique({
+      where:{
+         id: categoryId,
+      }
+   })
+   return category;
+}

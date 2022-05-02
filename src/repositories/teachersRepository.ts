@@ -14,3 +14,12 @@ export async function getTeachersByDisciplineId(disciplineId: number) {
   });
   return teachers;
 }
+
+export async function getTeacherById(teacherId: number) {
+   const teacher = await prisma.teachers.findUnique({
+      where:{
+         id:teacherId
+      }
+   })
+   return teacher
+}
