@@ -4,7 +4,7 @@ export async function getTeachersByDisciplineId(disciplineId: number) {
   const teachers = await teachersRepository.getTeachersByDisciplineId(
     disciplineId
   );
-  if (!teachers) throw { type: "not_found", message: "Teachers not found" };
+  if (teachers[0].teachersDisciplines.length === 0) throw { type: "not_found", message: "Teachers not found" };
   const filteredTeachers = filterTeachersDisciplines(teachers);
   return filteredTeachers;
 }

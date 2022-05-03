@@ -100,7 +100,7 @@ export async function findTeachersDisciplinesId(teacherId: number,disciplineId: 
        disciplineId: disciplineId
     }
   });
-  return teachersDisciplines.id;
+  return teachersDisciplines;
 }
 
 export async function createTest(testData: TestCreate){

@@ -101,17 +101,17 @@ export async function createTest(test) {
   await findTeacherById(parseInt(teacherId))
   await findCategoryById(parseInt(categoryId))
 
-  const findTeachersDisciplinesId = await testsRepository.findTeachersDisciplinesId(
+  const findTeachersDisciplines = await testsRepository.findTeachersDisciplinesId(
       parseInt(teacherId),
       parseInt(disciplineId)
     );
-  if (!findTeachersDisciplinesId)throw {type: "not_found", message: "Discipline is not assigned to selected teacher"};
+  if (!findTeachersDisciplines)throw {type: "not_found", message: "Discipline is not assigned to selected teacher"};
 
   const testData = {
     name,
     pdfUrl,
     categoryId: parseInt(categoryId),
-    teachersDisciplinesId: findTeachersDisciplinesId,
+    teachersDisciplinesId: findTeachersDisciplines.id,
   };
   await testsRepository.createTest(testData);
 }

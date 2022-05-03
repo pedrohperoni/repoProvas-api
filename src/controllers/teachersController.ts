@@ -4,5 +4,5 @@ import * as teachersService from "../services/teachersService.js";
 export async function getTeachersByDisciplineId(req: Request, res: Response) {
   const {disciplineId} = req.params
   const teachers = await teachersService.getTeachersByDisciplineId(parseInt(disciplineId))
-  res.send(teachers);
+  res.status(200).send(teachers);
 }

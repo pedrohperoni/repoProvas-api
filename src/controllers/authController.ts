@@ -6,6 +6,6 @@ export async function login(req: Request, res:Response){
 
    const loginSessionData = await authService.login(loginRequestData)
 
-   res.send(loginSessionData).status(201)
+   res.send(loginSessionData).status(200)
 }
 

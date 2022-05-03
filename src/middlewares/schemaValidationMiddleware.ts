@@ -4,7 +4,7 @@ export function schemaValidationMiddleware(schema: any) {
   return (req: Request, res: Response, next: NextFunction) => {
     const validation = schema.validate(req.body);
     if (validation.error) {
-      throw { type: "bad_request", message: "Invalid schema"};
+      throw { type: "unprocessable_entity", message: "Invalid schema"};
     }
 
     next();
