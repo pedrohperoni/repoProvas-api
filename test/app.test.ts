@@ -246,3 +246,16 @@ async function truncateTests() {
       tests,
       "teachersDisciplines";`;
 }
+
+async function truncateDB(){
+   await prisma.$executeRaw`TRUNCATE TABLE
+   sessions,
+   users,
+   categories,
+   tests,
+   "teachersDisciplines",
+   teachers,
+   disciplines,
+   terms;
+ `;
+}

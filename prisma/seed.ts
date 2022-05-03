@@ -58,21 +58,6 @@ async function seed() {
      disciplineId: disciplineId.id,
    },
  });
-
- const categoryId = await prisma.categories.findFirst()
- const teachersDisciplinesId = await prisma.teachersDisciplines.findFirst()
-
-  await prisma.tests.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      name: "Test 1",
-      pdfUrl: "https://www.test1.com/",
-      categoryId: categoryId.id,
-      teachersDisciplinesId: teachersDisciplinesId.id,
-      views: 0,
-    },
-  });
 }
 
 seed()
